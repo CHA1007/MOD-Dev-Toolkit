@@ -5,7 +5,8 @@ echo Auto Depen 打包脚本
 echo ========================================
 echo.
 
-python build_exe.py
+cd /d "%~dp0\.."
+python scripts\build_exe.py
 
 if %ERRORLEVEL% EQU 0 (
     echo.

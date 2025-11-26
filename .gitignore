@@ -37,6 +37,12 @@ env/
 !requirements.txt
 dependency_output.txt
 jei_dependency.txt
+version_info.txt
+
+# Build artifacts
+*.spec
+build/
+dist/
 
 # OS
 .DS_Store
