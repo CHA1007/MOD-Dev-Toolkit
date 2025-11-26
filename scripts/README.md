@@ -51,9 +51,9 @@ python3 build_exe.py
 
 构建完成后，生成的 exe 文件位于项目根目录的 `dist/` 目录中。
 
-文件名格式：`Auto Depen - 版本号.exe`
+文件名格式：`MOD开发工具箱 - 版本号.exe`
 
-例如：`Auto Depen - 1.2.0.exe`
+例如：`MOD开发工具箱 - 1.2.0.exe`
 
 ## 注意事项
 

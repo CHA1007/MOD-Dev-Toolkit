@@ -17,7 +17,7 @@ class ModrinthAPI:
         self.session = requests.Session()
         self.session.headers.update(
             {
-                "User-Agent": "Mozilla/5.0 (Auto-Depen-Generator/1.0)",
+                "User-Agent": "Mozilla/5.0 (MOD-Dev-Toolkit/1.2.0)",
             }
         )
 

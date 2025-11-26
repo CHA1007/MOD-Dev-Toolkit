@@ -66,13 +66,13 @@ VSVersionInfo(
       [
       StringTable(
         u'040904B0',
-        [StringStruct(u'CompanyName', u'Modrinth MOD Dependency Generator'),
-        StringStruct(u'FileDescription', u'Modrinth MOD 依赖生成器'),
+        [        StringStruct(u'CompanyName', u'MOD Dev Toolkit'),
+        StringStruct(u'FileDescription', u'MOD Dev Toolkit - 用于生成、配置、查询我的世界MOD开发相关内容'),
         StringStruct(u'FileVersion', u'{version}'),
-        StringStruct(u'InternalName', u'Auto Depen'),
+        StringStruct(u'InternalName', u'MOD Dev Toolkit'),
         StringStruct(u'LegalCopyright', u'Copyright (C) {datetime.now().year}'),
         StringStruct(u'OriginalFilename', u'{exe_filename}'),
-        StringStruct(u'ProductName', u'Modrinth MOD Dependency Generator'),
+        StringStruct(u'ProductName', u'MOD Dev Toolkit'),
         StringStruct(u'ProductVersion', u'{version}')]
       )
       ]
@@ -165,7 +165,7 @@ def build_exe():
     print(f"当前版本: {version}")
     
     # 生成带版本号的文件名
-    exe_name = f"Auto Depen - {version}"
+    exe_name = f"MOD开发工具箱 - {version}"
     
     # 清理 spec 文件（包括旧的和新的）
     spec_files_to_clean = ["main.spec", "gui.spec", "AutoDepen.spec"]

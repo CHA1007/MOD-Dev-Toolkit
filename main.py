@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 
 """
-Modrinth MOD 依赖生成器
+MOD开发工具箱 (MOD Dev Toolkit)
+用于生成、配置、查询我的世界MOD开发相关内容
 版本: 1.2.0
 """
 
@@ -34,10 +35,10 @@ def main():
     if len(sys.argv) > 1:
         arg = sys.argv[1]
         if arg in ["--version", "-v"]:
-            print(f"Modrinth MOD 依赖生成器 v{VERSION}")
+            print(f"MOD开发工具箱 v{VERSION}")
             return
         elif arg in ["--help", "-h"]:
-            print(f"Modrinth MOD 依赖生成器 v{VERSION}")
+            print(f"MOD开发工具箱 v{VERSION}")
             print("\n用法:")
             print("  python main.py              # 启动 GUI 模式（默认）")
             print("  python gui.py               # 直接启动 GUI 模式")
