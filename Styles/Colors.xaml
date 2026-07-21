@@ -1,0 +1,45 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- ============ 应用语义色 ============ -->
+
+    <!-- 品牌色（运行时强调色由 WPF-UI 接管） -->
+    <Color x:Key="PrimaryColor">#4CA6E8</Color>
+    <Color x:Key="PrimaryLightColor">#7CC0F0</Color>
+    <Color x:Key="PrimaryDarkColor">#2E86C9</Color>
+
+    <Color x:Key="BackgroundColor">#F7F9FB</Color>
+    <Color x:Key="CardBackgroundColor">#FFFFFF</Color>
+    <Color x:Key="SecondaryBackgroundColor">#EEF2F6</Color>
+
+    <Color x:Key="TextPrimaryColor">#1F2933</Color>
+    <Color x:Key="TextSecondaryColor">#5F6B78</Color>
+    <Color x:Key="TextTertiaryColor">#97A3B0</Color>
+
+    <Color x:Key="BorderColor">#E3E8EF</Color>
+    <Color x:Key="BorderLightColor">#EDF1F5</Color>
+
+    <Color x:Key="HoverColor">#F0F5FA</Color>
+    <Color x:Key="SelectedColor">#E4EFFA</Color>
+
+    <!-- ============ 画刷 ============ -->
+
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColor}"/>
+    <SolidColorBrush x:Key="PrimaryLightBrush" Color="{StaticResource PrimaryLightColor}"/>
+    <SolidColorBrush x:Key="PrimaryDarkBrush" Color="{StaticResource PrimaryDarkColor}"/>
+
+    <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource BackgroundColor}"/>
+    <SolidColorBrush x:Key="CardBackgroundBrush" Color="{StaticResource CardBackgroundColor}"/>
+    <SolidColorBrush x:Key="SecondaryBackgroundBrush" Color="{StaticResource SecondaryBackgroundColor}"/>
+
+    <SolidColorBrush x:Key="TextPrimaryBrush" Color="{StaticResource TextPrimaryColor}"/>
+    <SolidColorBrush x:Key="TextSecondaryBrush" Color="{StaticResource TextSecondaryColor}"/>
+    <SolidColorBrush x:Key="TextTertiaryBrush" Color="{StaticResource TextTertiaryColor}"/>
+
+    <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource BorderColor}"/>
+    <SolidColorBrush x:Key="BorderLightBrush" Color="{StaticResource BorderLightColor}"/>
+
+    <SolidColorBrush x:Key="HoverBrush" Color="{StaticResource HoverColor}"/>
+    <SolidColorBrush x:Key="SelectedBrush" Color="{StaticResource SelectedColor}"/>
+
+</ResourceDictionary>

@@ -1,137 +1,118 @@
 # MOD开发工具箱 (MOD Dev Toolkit)
 
-一个用于生成、配置、查询我的世界MOD开发相关内容的工具箱
+基于 WPF + [WPF-UI](https://github.com/lepoco/wpfui)（Win11 Fluent 风格）的 Minecraft MOD 开发辅助工具。
 
 ## 功能特性
 
-### 依赖配置生成
-- 🔍 **MOD 搜索**：通过 Modrinth API 搜索 MOD
-- 📦 **多种配置模式**：支持完整模式、仅 Gradle、仅配置文件等多种输出格式
-- 🎯 **版本选择**：支持查看和选择 MOD 的历史版本
-- 🔧 **加载器筛选**：根据选择的加载器自动筛选可用版本
-- 📝 **多种依赖类型**：支持 implementation、compileOnly、runtimeOnly、api 等
+### 首页
 
-### 界面与体验
-- 🎨 **现代化 GUI**：使用 CustomTkinter 构建的美观界面
-- 💾 **配置保存**：支持将生成的配置保存到文件
-- 📋 **一键复制**：快速复制生成的配置代码
+- 🔍 **MOD 搜索**：通过 Modrinth API 搜索 MOD，支持加载器（Forge/Fabric/NeoForge/Quilt）与游戏版本筛选，回车即可搜索
+- 📋 **搜索结果**：列表展示 MOD 图标、分类、**版本数与版本信息**、下载量、更新时间
+- 📦 **依赖配置生成**：选择 MOD 版本（含游戏版本标注）/ 配置模式 / 依赖类型，一键生成 Gradle 配置
+- 📋 **复制与保存**：生成结果可复制到剪贴板，或保存为 `.txt` / `.gradle` 文件
 
-### 未来规划
-- 📚 **MOD 信息查询**：查询 MOD 详细信息、更新日志等
-- ⚙️ **开发配置管理**：管理 MOD 开发相关的配置文件
-- 🔗 **依赖关系分析**：分析 MOD 之间的依赖关系
+### 设置
+
+- 🎨 **主题颜色**：默认天蓝色，内置 8 种预设强调色，点选立即生效并记住选择
+- 🌐 **API 端点**：可自定义 MOD 搜索 API 端点（需兼容 Modrinth v2 接口），支持连接测试与一键恢复默认
+- 🗑️ **缓存清理**：API 响应会缓存到本地（搜索 30 分钟、版本列表 15 分钟），可查看占用并一键清理
+- ℹ️ **关于**：版本与项目信息
+
+### 界面
+
+- 🪟 **Win11 Fluent**：Mica 材质背景、圆角窗口、系统级标题栏
+- ✨ **页面过渡动画**：侧边导航切换带淡入 + 滑动动画
+- 🧭 **侧边导航**：首页 / 设置
+
+## 技术栈
+
+- **.NET 9**（`net9.0-windows`）+ WPF
+- [WPF-UI](https://github.com/lepoco/wpfui) 4.3 — Fluent 控件库
+- [Modrinth API](https://docs.modrinth.com/) — 数据来源
+- Newtonsoft.Json — 设置持久化
 
 ## 项目结构
 
 ```
-MOD开发工具箱/
-├── models.py            # 数据模型（ModVersion, ModInfo）
-├── api.py               # Modrinth API 客户端
-├── generator.py         # 依赖配置生成器
-├── main.py              # 程序入口（版本号和主函数）
-├── gui.py               # GUI 界面
-├── requirements.txt     # Python 依赖
-├── LICENSE              # MIT 许可证
-├── start_gui.bat        # Windows 快速启动脚本
-├── check_dependencies.py # 依赖检查工具
-├── scripts/             # 构建脚本目录
-│   ├── build_exe.py     # Python 构建脚本
-│   ├── build_exe.bat    # Windows 构建脚本
-│   └── README.md        # 构建说明
-└── README.md            # 本文件
+MOD-Dev-Toolkit/
+├── MODDevToolkit.csproj        # 项目文件（.NET 9 + WPF-UI）
+├── App.xaml / App.xaml.cs      # 应用入口，启动时加载设置并应用主题色
+├── MainWindow.xaml / .cs       # 主窗口：FluentWindow + 侧边导航
+├── Pages/
+│   ├── HomePage.xaml / .cs     # 首页：搜索 + 结果列表 + 配置生成入口
+│   └── SettingsPage.xaml / .cs # 设置：主题色 / API 端点 / 缓存 / 关于
+├── Windows/
+│   └── ConfigGeneratorWindow.xaml / .cs  # 配置生成对话框
+├── Models/
+│   └── ModInfo.cs              # 数据模型（ModInfo / ModVersion / SearchResult）
+├── Services/
+│   ├── ModrinthApi.cs          # Modrinth API 客户端（可配置端点 + 文件缓存）
+│   ├── AppSettings.cs          # 设置模型与持久化
+│   └── ThemeService.cs         # 强调色运行时切换
+├── Styles/
+│   ├── Colors.xaml             # 应用语义色
+│   └── Controls.xaml           # 卡片 / 列表项 / 色块等辅助样式
+└── assets/icons/
+    ├── app_icon.png            # 像素画原图（图标源文件）
+    └── app_icon.ico            # 多尺寸图标（exe 文件图标 + 窗口图标）
 ```
 
-### 模块说明
+## 构建和运行
 
-- **models.py** - 定义数据模型类（`ModVersion`, `ModInfo`）
-- **api.py** - Modrinth API 客户端，负责与 Modrinth API 交互
-- **generator.py** - 依赖配置生成器，生成各种格式的依赖配置
-- **main.py** - 程序入口，定义版本号并启动 GUI
-- **gui.py** - 图形用户界面，使用 CustomTkinter 构建
+### 前置要求
 
-## 安装和使用
+- Windows 10 / 11
+- [.NET 9 SDK](https://dotnet.microsoft.com/download) 或更高版本
 
-### 环境要求
-
-- Python 3.8 或更高版本
-- 已安装所有依赖（见 `requirements.txt`）
-
-### 安装依赖
+### 命令行
 
 ```bash
-pip install -r requirements.txt
+# 恢复依赖
+dotnet restore
+
+# 构建
+dotnet build
+
+# 运行
+dotnet run
+
 ```
 
-### 运行程序
+### 发布与分发
 
-**启动 GUI**
+WPF 受框架限制**不支持裁剪**，依赖框架模式下单文件也**不能压缩**，故体积下限由 WPF-UI（约 6.3MB）决定。两种模式二选一：
+
+**极致小体积（默认，需目标机装 .NET 9 桌面运行时）**——exe 约 7.2MB，可再压成约 2.8MB 的 zip 分发：
+
 ```bash
-python gui.py
-# Windows 用户可以直接双击 start_gui.bat
+dotnet publish MODDevToolkit.csproj -c Release -r win-x64 --self-contained false -p:PublishSingleFile=true -o ./publish
 ```
 
-**查看帮助**
+> 目标机若无运行时，双击会提示安装；下载地址：[.NET 9 桌面运行时](https://dotnet.microsoft.com/download/dotnet/9.0)（选 .NET Desktop Runtime / Windows x64）。
+
+**免安装（自包含 + 单文件压缩，约 68MB）**——拷贝即用，目标机无需任何安装：
+
 ```bash
-python main.py --help
+dotnet publish MODDevToolkit.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:PublishReadyToRun=true -p:IncludeNativeLibrariesForSelfExtract=true -p:EnableCompressionInSingleFile=true -o ./publish
 ```
 
-**查看版本**
-```bash
-python main.py --version
-```
+## 数据存储
 
-## 构建可执行文件
-
-构建脚本已移至 `scripts/` 目录，与源码分离。
-
-详细说明请查看：[scripts/README.md](scripts/README.md)
-
-快速构建（Windows）：
-```bash
-scripts\build_exe.bat
-```
-
-## 使用说明
-
-1. 启动程序后，在搜索框输入 MOD 名称
-2. 选择加载器类型（Forge/Fabric/NeoForge）
-3. 点击"搜索"按钮
-4. 从搜索结果中选择 MOD
-5. 选择 MOD 版本（可选，默认使用最新版本）
-6. 选择配置模式和依赖类型
-7. 输入 Minecraft 版本（可选）
-8. 点击"生成配置"按钮
-9. 复制生成的配置代码或保存到文件
-
-## 配置模式说明
-
-- **full** - 完整模式：包含所有配置（Gradle + 配置文件）
-- **gradle_only** - 仅 Gradle：只生成 build.gradle 配置
-- **config_only** - 仅配置文件：只生成 mods.toml 或 fabric.mod.json
-- **fabric_json** - 仅 Fabric JSON：只生成 fabric.mod.json
-- **minimal** - 最小模式：只生成依赖代码行
-
-## 依赖类型说明
-
-- **implementation** - 实现依赖（默认）
-- **compileOnly** - 仅编译时依赖
-- **runtimeOnly** - 仅运行时依赖
-- **api** - API 依赖
+| 内容 | 位置 |
+|------|------|
+| 设置（主题色、API 端点） | `%APPDATA%/MODDevToolkit/settings.json` |
+| API 缓存 | `%LOCALAPPDATA%/MODDevToolkit/cache/` |
 
 ## 版本信息
 
-当前版本：1.2.0
+当前版本：2.0.0
 
 ## 许可证
 
 本项目采用 [MIT 许可证](LICENSE)。
 
-## 贡献
-
-欢迎提交 Issue 和 Pull Request！
-
 ## 相关链接
 
 - [Modrinth 官网](https://modrinth.com/)
 - [Modrinth API 文档](https://docs.modrinth.com/)
-
+- [WPF-UI](https://github.com/lepoco/wpfui)

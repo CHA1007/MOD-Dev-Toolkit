@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <!-- 对外应用名：决定 exe / 进程 / 程序集显示名 -->
+    <AssemblyName>MOD开发工具箱</AssemblyName>
+    <RootNamespace>MODDevToolkit</RootNamespace>
+    <Version>2.0.0</Version>
+    <Authors>CHA_DATE</Authors>
+    <Company>CHA_DATE</Company>
+    <Product>MOD开发工具箱</Product>
+    <Description>MOD开发辅助工具</Description>
+    <!-- exe 文件图标（资源管理器/任务栏显示） -->
+    <ApplicationIcon>assets\icons\app_icon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="WPF-UI" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- 窗口/任务栏图标，打包为 WPF 资源供 pack URI 引用 -->
+    <Resource Include="assets\icons\app_icon.ico" />
+  </ItemGroup>
+
+</Project>
